@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\CSharp - Sabado\\ProdutosApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D91009CC-CE0C-4F8D-A30A-29EC19ED0B96}|ProdutosApp\\ProdutosApp.csproj|c:\\csharp - sabado\\produtosapp\\produtosapp\\entities\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D91009CC-CE0C-4F8D-A30A-29EC19ED0B96}|ProdutosApp\\ProdutosApp.csproj|solutionrelative:produtosapp\\entities\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D91009CC-CE0C-4F8D-A30A-29EC19ED0B96}|ProdutosApp\\ProdutosApp.csproj|c:\\csharp - sabado\\produtosapp\\produtosapp\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D91009CC-CE0C-4F8D-A30A-29EC19ED0B96}|ProdutosApp\\ProdutosApp.csproj|solutionrelative:produtosapp\\controllers\\categoriascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D91009CC-CE0C-4F8D-A30A-29EC19ED0B96}|ProdutosApp\\ProdutosApp.csproj|c:\\csharp - sabado\\produtosapp\\produtosapp\\entities\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D91009CC-CE0C-4F8D-A30A-29EC19ED0B96}|ProdutosApp\\ProdutosApp.csproj|solutionrelative:produtosapp\\entities\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D91009CC-CE0C-4F8D-A30A-29EC19ED0B96}|ProdutosApp\\ProdutosApp.csproj|c:\\csharp - sabado\\produtosapp\\produtosapp\\controllers\\produtoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D91009CC-CE0C-4F8D-A30A-29EC19ED0B96}|ProdutosApp\\ProdutosApp.csproj|solutionrelative:produtosapp\\controllers\\produtoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Produto.cs",
-              "DocumentMoniker": "C:\\CSharp - Sabado\\ProdutosApp\\ProdutosApp\\Entities\\Produto.cs",
-              "RelativeDocumentMoniker": "ProdutosApp\\Entities\\Produto.cs",
-              "ToolTip": "C:\\CSharp - Sabado\\ProdutosApp\\ProdutosApp\\Entities\\Produto.cs",
-              "RelativeToolTip": "ProdutosApp\\Entities\\Produto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAASAAAAAAAAAA==",
+              "Title": "ProdutosController.cs",
+              "DocumentMoniker": "C:\\CSharp - Sabado\\ProdutosApp\\ProdutosApp\\Controllers\\ProdutosController.cs",
+              "RelativeDocumentMoniker": "ProdutosApp\\Controllers\\ProdutosController.cs",
+              "ToolTip": "C:\\CSharp - Sabado\\ProdutosApp\\ProdutosApp\\Controllers\\ProdutosController.cs",
+              "RelativeToolTip": "ProdutosApp\\Controllers\\ProdutosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T20:33:51.875Z",
+              "WhenOpened": "2025-03-15T20:48:17.906Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Categoria.cs",
-              "DocumentMoniker": "C:\\CSharp - Sabado\\ProdutosApp\\ProdutosApp\\Entities\\Categoria.cs",
-              "RelativeDocumentMoniker": "ProdutosApp\\Entities\\Categoria.cs",
-              "ToolTip": "C:\\CSharp - Sabado\\ProdutosApp\\ProdutosApp\\Entities\\Categoria.cs",
-              "RelativeToolTip": "ProdutosApp\\Entities\\Categoria.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Title": "CategoriasController.cs",
+              "DocumentMoniker": "C:\\CSharp - Sabado\\ProdutosApp\\ProdutosApp\\Controllers\\CategoriasController.cs",
+              "RelativeDocumentMoniker": "ProdutosApp\\Controllers\\CategoriasController.cs",
+              "ToolTip": "C:\\CSharp - Sabado\\ProdutosApp\\ProdutosApp\\Controllers\\CategoriasController.cs",
+              "RelativeToolTip": "ProdutosApp\\Controllers\\CategoriasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-08T20:33:45.419Z",
+              "WhenOpened": "2025-03-15T20:48:16.617Z",
               "EditorCaption": ""
             }
           ]

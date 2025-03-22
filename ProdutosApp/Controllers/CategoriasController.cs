@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProdutosApp.Repositories;
 
 namespace ProdutosApp.Controllers
 {
@@ -13,7 +14,14 @@ namespace ProdutosApp.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok();
+            //criando um objeto da classe de repositório de categorias
+            var categoriaRepository = new CategoriaRepository();
+
+            //consultando todas as categorias (lista de categorias)
+            var categorias = categoriaRepository.Consultar();
+
+            //retornando a lista para o cliente da API
+            return Ok(categorias);
         }
     }
 }
