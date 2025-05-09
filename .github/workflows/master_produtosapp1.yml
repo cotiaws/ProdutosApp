@@ -11,31 +11,34 @@ on:
 
 jobs:
   build:
+    name: Compilar a aplicação
     runs-on: windows-latest
     permissions:
       contents: read #This is required for actions/checkout
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Clonar o repositório
+        uses: actions/checkout@v4
 
-      - name: Set up .NET Core
+      - name: Instalar o SDK do .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.x'
 
-      - name: Build with dotnet
+      - name: Compilar com o .NET
         run: dotnet build --configuration Release
 
-      - name: dotnet publish
+      - name: Publicar o projeto
         run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
-      - name: Upload artifact for deployment job
+      - name: Enviar o artefato para o job ou etapa de implantação
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
+    name: Publicar na Azure
     runs-on: windows-latest
     needs: build
     environment:
@@ -46,19 +49,19 @@ jobs:
       contents: read #This is required for actions/checkout
 
     steps:
-      - name: Download artifact from build job
+      - name: Baixar o artefato do job ou etapa de compilação
         uses: actions/download-artifact@v4
         with:
           name: .net-app
       
-      - name: Login to Azure
+      - name: Login na Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_1E30E4B7A12448FE86A9125AA713A843 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8D97574B8E134A998DCC53BDE38D49CF }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7028F29CA7E747B08B5B79F61DCF53A4 }}
 
-      - name: Deploy to Azure Web App
+      - name: Implantar no Serviço de aplicativo da Azure
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:

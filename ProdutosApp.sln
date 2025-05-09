@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{F56809D7-BFE2-4BBF-9C18-52C152E73CA1}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
+		.github\workflows\master_produtosapp1.yml = .github\workflows\master_produtosapp1.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdutosApp.Infra.Data", "ProdutosApp.Infra.Data\ProdutosApp.Infra.Data.csproj", "{0AA90383-7E23-4139-9E9F-EAE9539E394B}"
