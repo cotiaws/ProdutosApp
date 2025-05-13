@@ -28,6 +28,9 @@ jobs:
       - name: Compilar com dotnet
         run: dotnet build --configuration Release
 
+      - name: Executar testes unitários
+        run: dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage"
+        
       - name: Publicar com dotnet
         run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
