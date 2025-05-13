@@ -45,6 +45,8 @@ namespace ProdutosApp.Infra.Data.Tests.Facts
 
             registro.Id.Should().Be(categoria.Id);
             registro.Nome.Should().Be(categoria.Nome);
+
+            Assert.Fail();
         }
 
         [Fact(DisplayName = "Atualizar categoria com sucesso no banco de dados.")]
