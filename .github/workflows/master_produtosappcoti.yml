@@ -11,45 +11,45 @@ on:
 
 jobs:
   build:
-    name: Compilar aplicação
+    name: Compilar a aplicação
     runs-on: windows-latest
     permissions:
       contents: read
 
     steps:
-      - name: Fazer checkout do código-fonte
+      - name: Clonar o repositório
         uses: actions/checkout@v4
 
-      - name: Configurar .NET Core
+      - name: Instalar o SDK do .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.x'
 
-      - name: Compilar com dotnet
+      - name: Compilar com o .NET
         run: dotnet build --configuration Release
 
       - name: Executar testes unitários
         run: dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage"
         
-      - name: Publicar com dotnet
+      - name: Publicar o projeto
         run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
-      - name: Enviar artefato para o job de deploy
+      - name: Enviar o artefato para o job ou etapa de implantação
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    name: Fazer deploy da aplicação
+    name: Publicar na Azure
     runs-on: windows-latest
     needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write # Necessário para solicitar o JWT
-      contents: read  # Necessário para actions/checkout
+      id-token: write
+      contents: read
 
     steps:
       - name: Baixar artefato do job de build

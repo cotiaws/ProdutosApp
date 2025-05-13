@@ -54,6 +54,7 @@ namespace ProdutosApp.Infra.Data.Tests.Facts
             Assert.NotNull(registro);
             registro.Nome.Should().Be(produto.Nome);
             registro.Preco.Should().Be(produto.Preco);
+            registro.Quantidade.Should().Be(produto.Quantidade);
             registro.CategoriaId.Should().Be(categoria.Id);
         }
 
@@ -72,6 +73,7 @@ namespace ProdutosApp.Infra.Data.Tests.Facts
 
             produto.Nome = "Produto Atualizado";
             produto.Preco = 999.99m;
+            produto.Quantidade = 10;
             await _unitOfWork.ProdutoRepository.UpdateAsync(produto);
             await _unitOfWork.SaveChangesAsync();
 
@@ -80,6 +82,7 @@ namespace ProdutosApp.Infra.Data.Tests.Facts
             Assert.NotNull(atualizado);
             atualizado.Nome.Should().Be("Produto Atualizado");
             atualizado.Preco.Should().Be(999.99m);
+            atualizado.Quantidade.Should().Be(10);
         }
 
         [Fact(DisplayName = "Excluir produto com sucesso no banco de dados.")]
@@ -119,7 +122,8 @@ namespace ProdutosApp.Infra.Data.Tests.Facts
             }
 
             var produtos = await _unitOfWork.ProdutoRepository.GetAllAsync();
-            produtos.Should().NotBeNull();
+
+            Assert.NotNull(produtos);
             produtos.Should().HaveCountGreaterThanOrEqualTo(5);
         }
 
@@ -138,9 +142,11 @@ namespace ProdutosApp.Infra.Data.Tests.Facts
 
             var resultado = await _unitOfWork.ProdutoRepository.GetByIdAsync(produto.Id.Value);
 
-            resultado.Should().NotBeNull();
+            Assert.NotNull(resultado);
             resultado!.Id.Should().Be(produto.Id);
             resultado.Nome.Should().Be(produto.Nome);
-        }
+            resultado.Preco.Should().Be(produto.Preco);
+            resultado.Quantidade.Should().Be(produto.Quantidade);
+        }  
     }
 }

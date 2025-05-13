@@ -24,6 +24,6 @@ namespace ProdutosApp.Infra.Data.Tests.Contexts
                 .Options;
 
             return new DataContext(options);
-        }
+        }  
     }
 }

@@ -110,6 +110,6 @@ namespace ProdutosApp.Infra.Data.Tests.Facts
 
             resultado.Id.Should().Be(categoria.Id);
             resultado.Nome.Should().Be(categoria.Nome);
-        }
+        }  
     }
 }
