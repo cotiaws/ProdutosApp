@@ -1,7 +1,7 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
+﻿# Documentação da ação Azure Web Apps Deploy: https://github.com/Azure/webapps-deploy
+# Mais ações do GitHub para Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - ProdutosAppCoti
+name: Build e Deploy do app ASP.Net Core para Azure Web App - ProdutosAppCoti
 
 on:
   push:
@@ -11,58 +11,60 @@ on:
 
 jobs:
   build:
+    name: Compilar aplicação
     runs-on: windows-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Fazer checkout do código-fonte
+        uses: actions/checkout@v4
 
-      - name: Set up .NET Core
+      - name: Configurar .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.x'
 
-      - name: Build with dotnet
+      - name: Compilar com dotnet
         run: dotnet build --configuration Release
 
-      - name: dotnet publish
+      - name: Publicar com dotnet
         run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
-      - name: Upload artifact for deployment job
+      - name: Enviar artefato para o job de deploy
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
+    name: Fazer deploy da aplicação
     runs-on: windows-latest
     needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write # Necessário para solicitar o JWT
+      contents: read  # Necessário para actions/checkout
 
     steps:
-      - name: Download artifact from build job
+      - name: Baixar artefato do job de build
         uses: actions/download-artifact@v4
         with:
           name: .net-app
-      
-      - name: Login to Azure
+
+      - name: Fazer login na Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_CB036BEE59BD49EC9EC1BABD8E96DD4A }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_1151782BC716476BAB102625661CB2E4 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_961CD047C43C4A31A26E937ADE17A0A9 }}
 
-      - name: Deploy to Azure Web App
+      - name: Fazer deploy no Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'ProdutosAppCoti'
           slot-name: 'Production'
           package: .
-          
