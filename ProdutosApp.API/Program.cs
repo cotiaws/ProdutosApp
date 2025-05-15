@@ -6,35 +6,57 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Controller + Scalar
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-var keyVaultUrl = $"https://coti.vault.azure.net/";
-builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
+// Key Vault
+string? keyVaultError = null;
 
-//Registrando os serviços de injeção de dependência
+try
+{
+    var keyVaultUrl = $"https://coti.vault.azure.net/";
+    builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
+}
+catch (Exception ex)
+{
+    // Armazena o erro em uma variável que será usada no pipeline da aplicação
+    keyVaultError = $"Erro ao acessar o Key Vault: {ex.Message}";
+    Console.WriteLine(">>> ERRO KEY VAULT: " + ex);
+}
+
+// Injeção de dependência (dependendo do erro, pode falhar)
 builder.Services.AddApplicationServices();
 builder.Services.AddDomainServices();
 builder.Services.AddEntityFramework(builder.Configuration);
 
-//Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
-app.MapOpenApi();
-
-//Swagger
-app.UseSwagger();
-app.UseSwaggerUI();
-
-//Scalar
-app.MapScalarApiReference(options =>
+if (!string.IsNullOrEmpty(keyVaultError))
 {
-    options.WithTheme(ScalarTheme.BluePlanet);
-});
+    app.Run(async context =>
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsync($@"{{ ""erro"": ""{keyVaultError}"" }}");
+    });
+}
+else
+{
+    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 
-app.UseAuthorization();
-app.MapControllers();
+    app.UseAuthorization();
+    app.MapControllers();
+    app.MapScalarApiReference(options =>
+    {
+        options.WithTheme(ScalarTheme.BluePlanet);
+    });
+}
+
 app.Run();
