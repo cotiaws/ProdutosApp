@@ -1,3 +1,4 @@
+using Azure.Identity;
 using ProdutosApp.Application.Extensions;
 using ProdutosApp.Domain.Extensions;
 using ProdutosApp.Infra.Data.Extensions;
@@ -17,12 +18,16 @@ builder.Services.AddEntityFramework(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+try
+{
+    var keyVaultUrl = $"https://coti.vault.azure.net/";
+    builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
+}
+catch (Exception e) { }
+
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.MapOpenApi();
 
 //Swagger
 app.UseSwagger();
