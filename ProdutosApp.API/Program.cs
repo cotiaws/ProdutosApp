@@ -9,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
+var keyVaultUrl = $"https://coti.vault.azure.net/";
+builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
+
 //Registrando os serviços de injeção de dependência
 builder.Services.AddApplicationServices();
 builder.Services.AddDomainServices();
@@ -17,10 +20,6 @@ builder.Services.AddEntityFramework(builder.Configuration);
 //Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
-var keyVaultUrl = $"https://coti.vault.azure.net/";
-builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
 
 var app = builder.Build();
 
