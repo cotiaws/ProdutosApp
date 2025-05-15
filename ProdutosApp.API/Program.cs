@@ -18,12 +18,9 @@ builder.Services.AddEntityFramework(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-try
-{
-    var keyVaultUrl = $"https://coti.vault.azure.net/";
-    builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
-}
-catch (Exception e) { }
+
+var keyVaultUrl = $"https://coti.vault.azure.net/";
+builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
 
 var app = builder.Build();
 
@@ -34,7 +31,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 //Scalar
-app.MapScalarApiReference(options => {
+app.MapScalarApiReference(options =>
+{
     options.WithTheme(ScalarTheme.BluePlanet);
 });
 
