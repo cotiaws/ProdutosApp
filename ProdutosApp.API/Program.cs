@@ -20,7 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Configurações para Azure (somente para produção)
-if(builder.Environment.IsProduction())
+if (builder.Environment.IsProduction())
 {
     builder.Configuration.AddAzureIdentity();
 }
@@ -37,6 +37,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 //Scalar
+
 app.MapScalarApiReference(options => {
     options.WithTheme(ScalarTheme.BluePlanet);
 });
