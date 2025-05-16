@@ -1,3 +1,5 @@
+using ProdutosApp.API.Extensions;
+using ProdutosApp.API.Middlewares;
 using ProdutosApp.Application.Extensions;
 using ProdutosApp.Domain.Extensions;
 using ProdutosApp.Infra.Data.Extensions;
@@ -17,12 +19,18 @@ builder.Services.AddEntityFramework(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Configurações para Azure (somente para produção)
+if(builder.Environment.IsProduction())
+{
+    builder.Configuration.AddAzureIdentity();
+}
+
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+//Middlewares
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+app.MapOpenApi();
 
 //Swagger
 app.UseSwagger();
