@@ -8,9 +8,9 @@ namespace ProdutosApp.API.Extensions
     /// </summary>
     public static class AzureIdentityExtension
     {
-        public static IConfigurationBuilder AddAzureIdentity(this IConfigurationBuilder builder)
+        public static IConfigurationBuilder AddAzureIdentity(this IConfigurationBuilder builder, IConfiguration configuration)
         {
-            var keyVaultUrl = $"https://treinamentofiotech.vault.azure.net/";
+            var keyVaultUrl = configuration["AzureKeyVault"];
 
             builder.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
 
