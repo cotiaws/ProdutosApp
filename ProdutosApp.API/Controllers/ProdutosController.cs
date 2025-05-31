@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProdutosApp.Application.Dtos.Requests;
 using ProdutosApp.Application.Dtos.Responses;
@@ -7,10 +8,11 @@ using System.Net;
 
 namespace ProdutosApp.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProdutosController (IProdutoAppService produtoAppService) : ControllerBase
-    {
+    {        
         [HttpPost]
         [ProducesResponseType(typeof(ProdutoResponse), 201)]
         public async Task<IActionResult> Post([FromBody] ProdutoRequest request)

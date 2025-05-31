@@ -1,5 +1,18 @@
 services:
-  sqlserver:
+
+  produtosapp:
+    container_name: produtosapp_api
+    build:
+       context: .
+       dockerfile: ProdutosApp.API/Dockerfile
+    ports:
+       - "8081:8080"
+    networks:
+      - coti_network
+    depends_on:
+       - sqlserver_produtosapp
+
+  sqlserver_produtosapp:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver_container
     ports:
