@@ -12,7 +12,7 @@ namespace ProdutosApp.Contexts
         //Método para configurar a conexão com o banco de dados do SqlServer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=localhost,1434;Initial Catalog=master;User ID=sa;Password=Coti@2025;Encrypt=False");
+            optionsBuilder.UseSqlServer("Data Source=produtosapp-coti.database.windows.net;Initial Catalog=produtosapp-bd;User ID=usuariocoti;Password=Coti@2025;Encrypt=True");
         }
 
         //Método para adicionar as classes de mapeamento do projeto
