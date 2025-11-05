@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProdutosApp.Data.Repositories;
 
 namespace ProdutosApp.API.Controllers
 {
@@ -10,8 +11,15 @@ namespace ProdutosApp.API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
+            //Instanciando a classe ProdutoRepository (objeto)
+            var produtoRepository = new ProdutoRepository();
+
+            //Consultando os produtos no banco de dados e guardar
+            //o retorno em uma variavel do tipo lista
+            var produtos = produtoRepository.ObterTodos();
+
             //Retornar OK (Sucesso)
-            return Ok("Consulta realizada com sucesso!");
+            return Ok(produtos);
         }
     }
 }
